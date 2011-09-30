@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Member:</b>
+  <%= @member_property.member_id %>
+</p>
+
+<p>
+  <b>Unit:</b>
+  <%= @member_property.unit_id %>
+</p>
+
+<p>
+  <b>Member type:</b>
+  <%= @member_property.member_type %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%= @member_property.start_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%= @member_property.end_date %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @member_property.status %>
+</p>
+
+
+<%= link_to 'Edit', edit_member_property_path(@member_property) %> |
+<%= link_to 'Back', member_properties_path %>

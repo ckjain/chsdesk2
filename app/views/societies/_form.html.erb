@@ -1,0 +1,81 @@
+<%= form_for(@society) do |f| %>
+  <% if @society.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@society.errors.count, "error") %> prohibited this society from being saved:</h2>
+
+      <ul>
+      <% @society.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :society_name %><br />
+    <%= f.text_field :society_name %>
+  </div>
+  <div class="field">
+    <%= f.label :number_of_flats %><br />
+    <%= f.number_field :number_of_flats %>
+  </div>
+  <div class="field">
+    <%= f.label :last_invoice_number %><br />
+    <%= f.text_field :last_invoice_number %>
+  </div>
+  <div class="field">
+    <%= f.label :society_address_line1 %><br />
+    <%= f.text_field :society_address_line1 %>
+  </div>
+  <div class="field">
+    <%= f.label :society_address_line2 %><br />
+    <%= f.text_field :society_address_line2 %>
+  </div>
+  <div class="field">
+    <%= f.label :society_city %><br />
+    <%= f.text_field :society_city %>
+  </div>
+  <div class="field">
+    <%= f.label :society_pincode %><br />
+    <%= f.text_field :society_pincode %>
+  </div>
+  <div class="field">
+    <%= f.label :society_state %><br />
+    <%= f.text_field :society_state %>
+  </div>
+  <div class="field">
+    <%= f.label :society_country %><br />
+    <%= f.text_field :society_country %>
+  </div>
+  <div class="field">
+    <%= f.label :govt_address_line1 %><br />
+    <%= f.text_field :govt_address_line1 %>
+  </div>
+  <div class="field">
+    <%= f.label :govt_address_line2 %><br />
+    <%= f.text_field :govt_address_line2 %>
+  </div>
+  <div class="field">
+    <%= f.label :govt_address_city %><br />
+    <%= f.text_field :govt_address_city %>
+  </div>
+  <div class="field">
+    <%= f.label :govt_address_pincode %><br />
+    <%= f.text_field :govt_address_pincode %>
+  </div>
+  <div class="field">
+    <%= f.label :govt_address_plotnumber %><br />
+    <%= f.text_field :govt_address_plotnumber %>
+  </div>
+  <div class="field">
+    <%= f.label :registration_number %><br />
+    <%= f.text_field :registration_number %>
+  </div>
+  <div class="field">
+    <%= f.label :govt_ward_number %><br />
+    <%= f.text_field :govt_ward_number %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

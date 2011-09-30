@@ -1,0 +1,18 @@
+
+<%= netzke :assign_search_grid_panel %>
+<%= netzke :with_dynamic_loading,
+	:class_name => "Basepack::AccordionPanel",
+    :title => 'Members and Units',
+    :width => 820,
+    :height => 400,
+    :header => false,
+    :border => false,
+    :active_tab => 0,
+	:items => [{
+    :class_name => "MemberSearchGridPanel",
+	},{
+	:title => 'Units',
+    :class_name => "UnitSearchGridPanel",
+    :lazy_loading => true 
+	}]
+%>

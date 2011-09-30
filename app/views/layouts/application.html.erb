@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ChsdeskSorcery</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+    <%= netzke_init %>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="initial-scale=1.0" />
+       <script type="text/javascript" src="/stylesheets/files/resources/lib/store/json2.js">
+        </script>
+        <script type="text/javascript" src="/stylesheets/files/resources/lib/jquery/jquery-1.6.2.min.js">
+        </script>
+        <script type="text/javascript" src="/stylesheets/files/resources/lib/jquery/jquery-ui-1.8.4.custom.min.js">
+        </script>
+        <script type="text/javascript" src="/stylesheets/files/resources/lib/store/jstore.js">
+        </script>
+        <script type="text/javascript" src="/stylesheets/files/resources/js/base.js">
+        </script>
+        <script type="text/javascript" src="/stylesheets/files/resources/lib/event/customEventHandler.js">
+        </script>
+        <link type="text/css" href="/stylesheets/files/resources/lib/jquery/css/cupertino_modified/jquery-ui-1.8.4.custom.css"
+        rel="stylesheet" />
+        <script type="text/javascript" src="/stylesheets/files/resources/lib/datepick/jquery.datepick.js">
+        </script>
+        <link type="text/css" href="/stylesheets/files/resources/lib/datepick/redmond.datepick.css" rel="stylesheet"
+        />
+        <link rel="stylesheet" type="text/css" href="/stylesheets/files/resources/lib/superfish/superfish.css"
+        media="screen">
+        <script type="text/javascript" src="/stylesheets/files/resources/lib/jquery/plugins/jquery.hoverIntent.js">
+        </script>
+        <script type="text/javascript" src="/stylesheets/files/resources/lib/jquery/plugins/jquery.cookie.js">
+        </script>
+        <script type="text/javascript" src="/stylesheets/files/resources/lib/superfish/superfish.js">
+        </script>
+        <script type="text/javascript" src="/javascripts/screen_BEE3.js">
+        </script>
+        <link href="/stylesheets/screen_BEE3.css" rel="stylesheet" type="text/css" />
+        <link href="/stylesheets/files/resources/css/base.css" rel="stylesheet" type="text/css" />
+        <style>
+            #share-buttons-panel { width: 1260px; height: 32px; position: relative; margin:
+            0 auto; } #share-buttons { position: absolute; right: 0; top: 8px; width: 105px;
+            }
+        </style>
+   
+
+</head>
+<body>
+ 
+<div class="container">
+	<div id="j_0" class="screen_BEE3">
+		<div id="j_0_subdiv" class="">
+   			  <div id="j_2" class="titledpanel0">
+	   			  		 <div id="header-button-container" style="z-index:99999">
+					 		<%= render 'header_container' %>
+					 	 </div>
+	       				 <div id="j_2_body" class="titledpanel0-body">
+		          			   <div id="j_2_subdiv" class="">
+		 						<%= render 'header' %>
+		 					   </div>
+			   			 </div>	
+		 	  </div>
+	 		
+		 </div>
+        <div id="j_7" id="j_7" class="accordion0">
+  
+    					<%= render 'sidebar' %>
+    	</div>				
+     		  <div id="j_6" class="titledpanel1">
+			           <div id="j_6_body" class="titledpanel1-body">
+
+
+			           </div>
+			  </div>
+    
+		<div id="j_13" class="titledpanel3">
+				      <div id="j_13_body" class="titledpanel3-body">
+					       <p>                 	                        	                        	     	 <p>
+					    	 <% flash.each do |key, value| %>
+						          <%= content_tag(:div, value, :class => "flash #{key}") %>
+						     <% end %>
+						     <%= yield %>
+					       </p>
+				      </div>
+		</div>
+
+	    <div id="j_14" class="titledpanel4">
+	        <div id="j_14_body" class="titledpanel4-body">
+	            <div id="j_14_subdiv" class="">
+	            	<%= render 'footer' %>
+	            </div>
+	        </div>
+	    </div>
+			     
+	</div>	
+</div>
+
+
+</body>
+</html>

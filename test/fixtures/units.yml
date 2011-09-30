@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  unit_number: MyString
+  wing_name: MyString
+  building_name: MyString
+  unit_type_id: 1
+  society_id: 1
+  member_id: 1
+
+two:
+  unit_number: MyString
+  wing_name: MyString
+  building_name: MyString
+  unit_type_id: 1
+  society_id: 1
+  member_id: 1

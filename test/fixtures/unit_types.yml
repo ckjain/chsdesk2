@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  type_name: MyString
+  tax_area: 1
+  carpet_area: 1
+  built_area: 1
+  super_built_area: 1
+
+two:
+  type_name: MyString
+  tax_area: 1
+  carpet_area: 1
+  built_area: 1
+  super_built_area: 1

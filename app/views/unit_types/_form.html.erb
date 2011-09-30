@@ -1,0 +1,33 @@
+<%= form_for(@unit_type) do |f| %>
+  <% if @unit_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@unit_type.errors.count, "error") %> prohibited this unit_type from being saved:</h2>
+
+      <ul>
+      <% @unit_type.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :type_name %><br />
+    <%= f.text_field :type_name %>
+  </div>
+  <div class="field">
+    <%= f.label :carpet_area %><br />
+    <%= f.text_field :carpet_area %>
+  </div>
+  <div class="field">
+    <%= f.label :built_area %><br />
+    <%= f.text_field :built_area %>
+  </div>
+  <div class="field">
+    <%= f.label :super_built_area %><br />
+    <%= f.text_field :super_built_area %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

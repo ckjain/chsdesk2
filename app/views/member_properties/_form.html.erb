@@ -1,0 +1,41 @@
+<%= form_for(@member_property) do |f| %>
+  <% if @member_property.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@member_property.errors.count, "error") %> prohibited this member_property from being saved:</h2>
+
+      <ul>
+      <% @member_property.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :member_id %><br />
+    <%= f.number_field :member_id %>
+  </div>
+  <div class="field">
+    <%= f.label :unit_id %><br />
+    <%= f.number_field :unit_id %>
+  </div>
+  <div class="field">
+    <%= f.label :member_type %><br />
+    <%= f.text_field :member_type %>
+  </div>
+  <div class="field">
+    <%= f.label :start_date %><br />
+    <%= f.date_select :start_date %>
+  </div>
+  <div class="field">
+    <%= f.label :end_date %><br />
+    <%= f.date_select :end_date %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br />
+    <%= f.check_box :status %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,21 @@
+<h1>Listing meeting_members</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @meeting_members.each do |meeting_member| %>
+  <tr>
+    <td><%= link_to 'Show', meeting_member %></td>
+    <td><%= link_to 'Edit', edit_meeting_member_path(meeting_member) %></td>
+    <td><%= link_to 'Destroy', meeting_member, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Meeting member', new_meeting_member_path %>

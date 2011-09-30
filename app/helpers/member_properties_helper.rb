@@ -1,0 +1,2 @@
+module MemberPropertiesHelper
+end

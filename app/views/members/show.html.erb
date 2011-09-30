@@ -1,0 +1,75 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Unit:</b>
+  <%= @member.unit_id %>
+</p>
+
+<p>
+  <b>Society:</b>
+  <%= @member.society_id %>
+</p>
+
+<p>
+  <b>First name:</b>
+  <%= @member.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%= @member.last_name %>
+</p>
+
+<p>
+  <b>Prefix:</b>
+  <%= @member.prefix %>
+</p>
+
+<p>
+  <b>Mobile phone:</b>
+  <%= @member.mobile_phone %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @member.email_id %>
+</p>
+
+<p>
+  <b>Is owner:</b>
+  <%= @member.is_owner %>
+</p>
+
+<p>
+  <b>Live here:</b>
+  <%= @member.live_here %>
+</p>
+
+<p>
+  <b>Email bills:</b>
+  <%= @member.email_bills %>
+</p>
+
+<p>
+  <b>Sms bills:</b>
+  <%= @member.sms_bills %>
+</p>
+
+<p>
+  <b>Sms receipt:</b>
+  <%= @member.sms_receipt %>
+</p>
+
+<p>
+  <b>Noc charges:</b>
+  <%= @member.noc_charges %>
+</p>
+
+<p>
+  <b>Is mc member:</b>
+  <%= @member.is_mc_member %>
+</p>
+
+
+<%= link_to 'Edit', edit_member_path(@member) %> |
+<%= link_to 'Back', members_path %>

@@ -1,0 +1,82 @@
+<ul class="accordion0-blocks ">
+   <li id="j_8" class="collapsibleblock0 " data-role="collapsible">
+              <div class="accordion-handle">
+                            <span class="icon">
+                            </span>
+                            <span class="title ui-btn-text">
+                               UnitType
+                            </span>
+              </div>
+              <div class="accordion-content">
+              </div>
+        </li>
+					 	       <li class="uncollapse-margins">
+					           </li>
+   <li id="j_9" class="collapsibleblock1 collapsed " data-role="collapsible">
+                    <div class="accordion-handle">
+                        <span class="icon">
+                        </span>
+                        <span class="title ui-btn-text">
+                            Events
+                        </span>
+                    </div>
+                    <div class="accordion-content">
+                    </div>
+                </li>
+                <li class="uncollapse-margins">
+                    .
+                </li>
+   <li id="j_10" class="collapsibleblock2 collapsed " data-role="collapsible">
+                                <div class="accordion-handle">
+                                    <span class="icon">
+                                    </span>
+                                    <span class="title ui-btn-text">
+                                        Recent Posts
+                                    </span>
+                                </div>
+                                <div class="accordion-content">
+                                </div>
+                            </li>
+                            <li class="uncollapse-margins">
+                                .
+   </li>
+   <li id="j_11" class="collapsibleblock3 collapsed " data-role="collapsible">
+                          <div class="accordion-handle">
+                                <span class="icon">
+                                </span>
+                                <span class="title ui-btn-text">
+                                        collapsible block
+                                </span>
+                           </div>
+                           <div class="accordion-content">
+                           </div>
+                            </li>
+                            <li class="uncollapse-margins">
+                                .
+   </li>
+</ul>
+	<script type="text/javascript">
+	  $(function()
+		{
+		    $("#j_7 > ul > li > .accordion-handle").click(function()
+		    {
+		        var item = $(this).parent();
+		        if (item.hasClass("collapsed"))
+		        {
+		            item.removeClass("collapsed").siblings().addClass("collapsed");
+		        }
+		        else
+		        {
+		            item.addClass("collapsed")
+		            var next = item.nextAll(":not(.uncollapse-margins)").first();
+		            if (!next.length)
+		            {
+		                next = item.siblings().first();
+		            }
+		            next.removeClass("collapsed");
+		        }
+		        item.trigger("click");
+		        return false;
+		    });
+		});
+	 </script>

@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Type name:</b>
+  <%= @unit_type.type_name %>
+</p>
+
+<p>
+  <b>Carpet area:</b>
+  <%= @unit_type.carpet_area %>
+</p>
+
+<p>
+  <b>Built area:</b>
+  <%= @unit_type.built_area %>
+</p>
+
+<p>
+  <b>Super built area:</b>
+  <%= @unit_type.super_built_area %>
+</p>
+
+
+<%= link_to 'Edit', edit_unit_type_path(@unit_type) %> |
+<%= link_to 'Back', unit_types_path %>

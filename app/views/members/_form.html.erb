@@ -1,0 +1,73 @@
+<%= form_for(@member) do |f| %>
+  <% if @member.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@member.errors.count, "error") %> prohibited this member from being saved:</h2>
+
+      <ul>
+      <% @member.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :unit_id %><br />
+    <%= f.number_field :unit_id %>
+  </div>
+  <div class="field">
+    <%= f.label :society_id %><br />
+    <%= f.number_field :society_id %>
+  </div>
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :prefix %><br />
+    <%= f.text_field :prefix %>
+  </div>
+  <div class="field">
+    <%= f.label :mobile_phone %><br />
+    <%= f.text_field :mobile_phone %>
+  </div>
+  <div class="field">
+    <%= f.label :email_id %><br />
+    <%= f.text_field :email_id %>
+  </div>
+  <div class="field">
+    <%= f.label :is_owner %><br />
+    <%= f.check_box :is_owner %>
+  </div>
+  <div class="field">
+    <%= f.label :live_here %><br />
+    <%= f.check_box :live_here %>
+  </div>
+  <div class="field">
+    <%= f.label :email_bills %><br />
+    <%= f.check_box :email_bills %>
+  </div>
+  <div class="field">
+    <%= f.label :sms_bills %><br />
+    <%= f.check_box :sms_bills %>
+  </div>
+  <div class="field">
+    <%= f.label :sms_receipt %><br />
+    <%= f.check_box :sms_receipt %>
+  </div>
+  <div class="field">
+    <%= f.label :noc_charges %><br />
+    <%= f.check_box :noc_charges %>
+  </div>
+  <div class="field">
+    <%= f.label :is_mc_member %><br />
+    <%= f.text_field :is_mc_member %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

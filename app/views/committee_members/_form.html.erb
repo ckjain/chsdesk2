@@ -1,0 +1,37 @@
+<%= form_for(@committee_member) do |f| %>
+  <% if @committee_member.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@committee_member.errors.count, "error") %> prohibited this committee_member from being saved:</h2>
+
+      <ul>
+      <% @committee_member.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :member_id %><br />
+    <%= f.number_field :member_id %>
+  </div>
+  <div class="field">
+    <%= f.label :society_id %><br />
+    <%= f.number_field :society_id %>
+  </div>
+  <div class="field">
+    <%= f.label :desgination %><br />
+    <%= f.text_field :desgination %>
+  </div>
+  <div class="field">
+    <%= f.label :start_date %><br />
+    <%= f.date_select :start_date %>
+  </div>
+  <div class="field">
+    <%= f.label :end_date %><br />
+    <%= f.date_select :end_date %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,33 @@
+<h1>Listing member_properties</h1>
+
+<table>
+  <tr>
+    <th>Member</th>
+    <th>Unit</th>
+    <th>Member type</th>
+    <th>Start date</th>
+    <th>End date</th>
+    <th>Status</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @member_properties.each do |member_property| %>
+  <tr>
+    <td><%= member_property.member_id %></td>
+    <td><%= member_property.unit_id %></td>
+    <td><%= member_property.member_type %></td>
+    <td><%= member_property.start_date %></td>
+    <td><%= member_property.end_date %></td>
+    <td><%= member_property.status %></td>
+    <td><%= link_to 'Show', member_property %></td>
+    <td><%= link_to 'Edit', edit_member_property_path(member_property) %></td>
+    <td><%= link_to 'Destroy', member_property, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Member property', new_member_property_path %>

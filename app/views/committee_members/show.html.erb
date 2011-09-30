@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Member:</b>
+  <%= @committee_member.member_id %>
+</p>
+
+<p>
+  <b>Society:</b>
+  <%= @committee_member.society_id %>
+</p>
+
+<p>
+  <b>Desgination:</b>
+  <%= @committee_member.desgination %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%= @committee_member.start_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%= @committee_member.end_date %>
+</p>
+
+
+<%= link_to 'Edit', edit_committee_member_path(@committee_member) %> |
+<%= link_to 'Back', committee_members_path %>

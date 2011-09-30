@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  unit_id: 1
+  society_id: 1
+  first_name: MyString
+  last_name: MyString
+  prefix: MyString
+  mobile_phone: MyString
+  email_id: MyString
+  is_owner: false
+  live_here: false
+  email_bills: false
+  sms_bills: false
+  sms_receipt: false
+  noc_charges: false
+  is_mc_member: 
+
+two:
+  unit_id: 1
+  society_id: 1
+  first_name: MyString
+  last_name: MyString
+  prefix: MyString
+  mobile_phone: MyString
+  email_id: MyString
+  is_owner: false
+  live_here: false
+  email_bills: false
+  sms_bills: false
+  sms_receipt: false
+  noc_charges: false
+  is_mc_member: 

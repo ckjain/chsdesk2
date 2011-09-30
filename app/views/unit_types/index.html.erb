@@ -1,0 +1,15 @@
+
+<input type="button" value="Society" style="width:160px" onClick="Netzke.page.society.show()" />
+
+<%= netzke :unit_type_search_grid_panel %>
+
+
+<%= netzke :society,
+      :class_name => "Basepack::Window",
+      :x => 50,
+      :y => 70,
+      :close_action => "hide",
+   	  :items => [{
+      :class_name => "SocietySearchGridPanel",
+ 		}]
+%>

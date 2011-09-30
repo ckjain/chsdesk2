@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  member_id: 1
+  society_id: 1
+  desgination: MyString
+  start_date: 2011-09-30
+  end_date: 2011-09-30
+
+two:
+  member_id: 1
+  society_id: 1
+  desgination: MyString
+  start_date: 2011-09-30
+  end_date: 2011-09-30
