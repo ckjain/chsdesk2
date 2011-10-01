@@ -1,261 +1,210 @@
-== Welcome to Rails
+Masql setup
 
-Rails is a web-application framework that includes everything needed to create
-database-backed web applications according to the Model-View-Control pattern.
+Gem install mysql
 
-This pattern splits the view (also called the presentation) into "dumb"
-templates that are primarily responsible for inserting pre-built data in between
-HTML tags. The model contains the "smart" domain objects (such as Account,
-Product, Person, Post) that holds all the business logic and knows how to
-persist themselves to a database. The controller handles the incoming requests
-(such as Save New Account, Update Product, Show Post) by manipulating the model
-and directing data to the view.
+copy libmysql.dll in bin directory of ruby
+and system32 of window
+take libmySQL.dll from lateralview
 
-In Rails, the model is handled by what's called an object-relational mapping
-layer entitled Active Record. This layer allows you to present the data from
-database rows as objects and embellish these data objects with business logic
-methods. You can read more about Active Record in
-link:files/vendor/rails/activerecord/README.html.
+******************************************
+to be changed in production
 
-The controller and view are handled by the Action Pack, which handles both
-layers by its two parts: Action View and Action Controller. These two layers
-are bundled in a single package due to their heavy interdependence. This is
-unlike the relationship between the Active Record and Action Pack that is much
-more separate. Each of these packages can be used independently outside of
-Rails. You can read more about Action Pack in
-link:files/vendor/rails/actionpack/README.html.
+1. config.action_mailer.default_url_options = { :host => "localhost:3000" }
+--------changes as per the site server ---config/evinroments/development.rb
+2. force ssl to be acyivated 
+3. Send confirmation email of password reset
+4. In Member table last_signin changed in the table from default NULL=false to NULL=true
+***********************************************
 
 
-== Getting Started
+Git command
+----------work in branch and merge with master---------
+git checkout -b modify-README-- * identifies which branch weâ€™re currently on
+git status
+git commit -a -m "Improved the README file"
+$ git checkout master
+   Switched to branch 'master'
+$ git merge modify-README
+$ git branch -d modify-README
+   Deleted branch modify-README (was 2c92bef).
+------------when mess up a branch---------
+# For illustration only; don't do this unless you mess up a branch
+$ git checkout -b topic-branch
+$ <really screw up the branch>
+$ git add .
+$ git commit -a -m "Screwed up"
+$ git checkout master
+$ git branch -D topic-branch
+-------------upload to git hub-------------
+git add .
+git commit -m "Initial commit"
+git push origin master
+----------------------------------
 
-1. At the command prompt, create a new Rails application:
-       <tt>rails new myapp</tt> (where <tt>myapp</tt> is the application name)
+<p>
+  <%= f.label :society_tokens, "Societies" %><br />
+  <%= f.text_field :society_tokens, "data-pre" => @unit.societies.map(&:attributes).to_json %>
+</p>
 
-2. Change directory to <tt>myapp</tt> and start the web server:
-       <tt>cd myapp; rails server</tt> (run with --help for options)
+<p>
+  <%= f.label :member_tokens, "Members" %><br />
+  <%= f.text_field :member_tokens, "data-pre" => @unit.members.map(&:attributes).to_json %>
+</p>
 
-3. Go to http://localhost:3000/ and you'll see:
-       "Welcome aboard: You're riding Ruby on Rails!"
+Query;--
+Client.where(:created_at => (params[:start_date].to_date)..(params[:end_date].to_date))
+gives following--
+SELECT "clients".* FROM "clients" WHERE ("clients"."created_at" BETWEEN '2010-09-29' AND '2010-11-30')
 
-4. Follow the guidelines to start developing your application. You can find
-the following resources handy:
+Client.where({ :created_at => (Time.now.midnight - 1.day)..Time.now.midnight})
+SELECT * FROM clients WHERE (clients.created_at BETWEEN '2008-12-21 00:00:00' AND '2008-12-22 00:00:00')
+***********************************************************
 
-* The Getting Started Guide: http://guides.rubyonrails.org/getting_started.html
-* Ruby on Rails Tutorial Book: http://www.railstutorial.org/
+LOAD DATA INFILE 'c:/importdata.txt' into table `chsdesk3`.`members`;
 
 
-== Debugging Rails
+An article on using extjs in rails--------------------------
 
-Sometimes your application goes wrong. Fortunately there are a lot of tools that
-will help you debug it and get it back on the rails.
+I currently have an extremely large, desktop style app written in ExtJS. It used to run on top of Perl's Catalyst MVC framework, but once the entire View layer was converted to an ExtJS based desktop I started migrating to Ruby on Rails models and controllers. It is equally as fast, if not faster, and easier to maintain and has a much smaller code base.
 
-First area to check is the application log files. Have "tail -f" commands
-running on the server.log and development.log. Rails will automatically display
-debugging and runtime information to these files. Debugging info will also be
-shown in the browser on requests from 127.0.0.1.
+-Make sure that you set your active record config to not include the root name of the model in the json, 
+so that Ext's JsonStore has no problem reading the records. There is an option on ActiveRecord BASE called
+ include _ root _ in _ json you have to set to false.
 
-You can also log your own messages directly into the log file from your code
-using the Ruby logger class from inside your controllers. Example:
+-Make sure that you properly define your Application classes in Ext and maximize code re-use 
+and you are going to want some sort of method to clean up unused nodes in the DOM. 
+Javascript performance can be a real pain unless you are using the latest versions of Safari or Firefox 3.1.
 
-  class WeblogController < ActionController::Base
-    def destroy
-      @weblog = Weblog.find(params[:id])
-      @weblog.destroy
-      logger.info("#{Time.now} Destroyed Weblog ID ##{@weblog.id}!")
+-You probably will want some sort of caching method for data on the server to be served to 
+your application in JSON format at the time the page is loaded. This will cut down on the number of 
+round trips via Ajax.
+
+-Definitely make use of Ext's WindowManager and StoreManager objects, or roll your own from 
+Ext.util.MixedCollection
+
+-Develop your code in separate, managable files, then have a build process which combines them into a 
+single file, and then run YUI's compressor or Dean Edwards Packer on it to compress / obfuscate the file. 
+Serve all JS and CSS in their own single files, including the Ext supplied ones.
+
+-------------------------------------------------------------------
+
+def temp
+   scope :discontinued, where(:discontinued => true)
+  
+      def self.cheaper_than(price)
+        where("products.price < ?", price)
+      end
+  
+  scope :cheap, cheaper_than(5)
+  scope :with_cheap_products, joins(:products) & Product.cheap
+ end
+ def east__get_data(params)
+  # extract Ext filters from params (we want them keep on working)
+  filters = params[:filter] ||= {}
+
+  # calculate the foreign key based on container class
+  foreign_key = aggregatees[:center][:data_class_name].
+                constantize.table_name.singularize + "_id"
+
+  # add the foreign key filter to the filters
+  filters.merge!({:our_fkey_filter => {
+    :data  => {:value => params[:container_id], :type => "integer"},
+    :field => foreign_key}
+  })
+
+  # call the original get_data method, but with updated filters
+  method_missing(:east__get_data, params.merge(:filter => filters))
+end
+-----------------------------------------------------
+ActionMailer::Base.smtp_settings = {
+    :enable_starttls_auto => true,  #this is the important shit!
+    :address        => 'smtp.gmail.com',
+    :port           => 587,
+    :domain         => 'your.domain.com',
+    :authentication => :plain,
+    :user_name      => 'login@your.domain.com',
+    :password       => 'assword'
+  }
+------------------------------------------------------------
+CREATE TRIGGER [dbo].[updated_myTable] ON  [dbo].[myTable] AFTER UPDATE
+AS 
+BEGIN
+    SET NOCOUNT ON;
+    UPDATE [dbo].[myTable] Set AdmitDateTime = GetDate() where pkid in (SELECT pkid FROM Inserted)
+END
+----------------------------------------------------------------------------
+validates :terms_of_service, :acceptance => { :accept => 'yes' }
+validates :terms_of_service, :acceptance => true
+
+has_many :books
+  validates_associated :books
+  
+  validates :size, :inclusion => { :in => %w(small medium large),
+    :message => "%{value} is not a valid size" }
+    
+ validates :name, :login, :email, :presence => true
+ ********* 
+ 3.8 numericality  
+    :greater_than – Specifies the value must be greater than the supplied value. The default error message for this option is “must be greater than %{count}”.
+    :greater_than_or_equal_to – Specifies the value must be greater than or equal to the supplied value. The default error message for this option is “must be greater than or equal to %{count}”.
+    :equal_to – Specifies the value must be equal to the supplied value. The default error message for this option is “must be equal to %{count}”.
+    :less_than – Specifies the value must be less than the supplied value. The default error message for this option is “must be less than %{count}”.
+    :less_than_or_equal_to – Specifies the value must be less than or equal the supplied value. The default error message for this option is “must be less than or equal to %{count}”.
+    :odd – Specifies the value must be an odd number if set to true. The default error message for this option is “must be odd”.
+    :even – Specifies the value must be an even number if set to true. The default error message for this option is “must be even”.
+*************
+validates_with 
+class Person < ActiveRecord::Base
+  validates_with GoodnessValidator, :fields => [:first_name, :last_name]
+end
+ 
+class GoodnessValidator < ActiveModel::Validator
+  def validate(record)
+    if options[:fields].any?{|field| record.send(field) == "Evil" }
+      record.errors[:base] << "This person is evil"
     end
   end
-
-The result will be a message in your log file along the lines of:
-
-  Mon Oct 08 14:22:29 +1000 2007 Destroyed Weblog ID #1!
-
-More information on how to use the logger is at http://www.ruby-doc.org/core/
-
-Also, Ruby documentation can be found at http://www.ruby-lang.org/. There are
-several books available online as well:
-
-* Programming Ruby: http://www.ruby-doc.org/docs/ProgrammingRuby/ (Pickaxe)
-* Learn to Program: http://pine.fm/LearnToProgram/ (a beginners guide)
-
-These two books will bring you up to speed on the Ruby language and also on
-programming in general.
-
-
-== Debugger
-
-Debugger support is available through the debugger command when you start your
-Mongrel or WEBrick server with --debugger. This means that you can break out of
-execution at any point in the code, investigate and change the model, and then,
-resume execution! You need to install ruby-debug to run the server in debugging
-mode. With gems, use <tt>sudo gem install ruby-debug</tt>. Example:
-
-  class WeblogController < ActionController::Base
-    def index
-      @posts = Post.all
-      debugger
-    end
+ *************** 
+  validates_each
+validates_each :name, :surname do |model, attr, value|
+    model.errors.add(attr, 'must start with upper case') if value =~ /\A[a-z]/
   end
+end
+********************************
+validates :expiration_date,
+  :date => { :after => Time.now, :before => Time.now + 1.year }
 
-So the controller will accept the action, run the first line, then present you
-with a IRB prompt in the server window. Here you can do things like:
+:after
+:before
+:after_or_equal_to
+:before_or_equal_to
+**************************************
+Available Callbacks
+0.1 Creating an Object
 
-  >> @posts.inspect
-  => "[#<Post:0x14a6be8
-          @attributes={"title"=>nil, "body"=>nil, "id"=>"1"}>,
-       #<Post:0x14a6620
-          @attributes={"title"=>"Rails", "body"=>"Only ten..", "id"=>"2"}>]"
-  >> @posts.first.title = "hello from a debugger"
-  => "hello from a debugger"
+    before_validation
+    after_validation
+    before_save
+    before_create
+    around_create
+    after_create
+    after_save
 
-...and even better, you can examine how your runtime objects actually work:
+0.2 Updating an Object
 
-  >> f = @posts.first
-  => #<Post:0x13630c4 @attributes={"title"=>nil, "body"=>nil, "id"=>"1"}>
-  >> f.
-  Display all 152 possibilities? (y or n)
+    before_validation
+    after_validation
+    before_save
+    before_update
+    around_update
+    after_update
+    after_save
 
-Finally, when you're ready to resume execution, you can enter "cont".
+10.3 Destroying an Object
 
-
-== Console
-
-The console is a Ruby shell, which allows you to interact with your
-application's domain model. Here you'll have all parts of the application
-configured, just like it is when the application is running. You can inspect
-domain models, change values, and save to the database. Starting the script
-without arguments will launch it in the development environment.
-
-To start the console, run <tt>rails console</tt> from the application
-directory.
-
-Options:
-
-* Passing the <tt>-s, --sandbox</tt> argument will rollback any modifications
-  made to the database.
-* Passing an environment name as an argument will load the corresponding
-  environment. Example: <tt>rails console production</tt>.
-
-To reload your controllers and models after launching the console run
-<tt>reload!</tt>
-
-More information about irb can be found at:
-link:http://www.rubycentral.org/pickaxe/irb.html
+    before_destroy
+    after_destroy
+    around_destroy
 
 
-== dbconsole
 
-You can go to the command line of your database directly through <tt>rails
-dbconsole</tt>. You would be connected to the database with the credentials
-defined in database.yml. Starting the script without arguments will connect you
-to the development database. Passing an argument will connect you to a different
-database, like <tt>rails dbconsole production</tt>. Currently works for MySQL,
-PostgreSQL and SQLite 3.
-
-== Description of Contents
-
-The default directory structure of a generated Ruby on Rails application:
-
-  |-- app
-  |   |-- assets
-  |       |-- images
-  |       |-- javascripts
-  |       `-- stylesheets
-  |   |-- controllers
-  |   |-- helpers
-  |   |-- mailers
-  |   |-- models
-  |   `-- views
-  |       `-- layouts
-  |-- config
-  |   |-- environments
-  |   |-- initializers
-  |   `-- locales
-  |-- db
-  |-- doc
-  |-- lib
-  |   `-- tasks
-  |-- log
-  |-- public
-  |-- script
-  |-- test
-  |   |-- fixtures
-  |   |-- functional
-  |   |-- integration
-  |   |-- performance
-  |   `-- unit
-  |-- tmp
-  |   |-- cache
-  |   |-- pids
-  |   |-- sessions
-  |   `-- sockets
-  `-- vendor
-      |-- assets
-          `-- stylesheets
-      `-- plugins
-
-app
-  Holds all the code that's specific to this particular application.
-
-app/assets
-  Contains subdirectories for images, stylesheets, and JavaScript files.
-
-app/controllers
-  Holds controllers that should be named like weblogs_controller.rb for
-  automated URL mapping. All controllers should descend from
-  ApplicationController which itself descends from ActionController::Base.
-
-app/models
-  Holds models that should be named like post.rb. Models descend from
-  ActiveRecord::Base by default.
-
-app/views
-  Holds the template files for the view that should be named like
-  weblogs/index.html.erb for the WeblogsController#index action. All views use
-  eRuby syntax by default.
-
-app/views/layouts
-  Holds the template files for layouts to be used with views. This models the
-  common header/footer method of wrapping views. In your views, define a layout
-  using the <tt>layout :default</tt> and create a file named default.html.erb.
-  Inside default.html.erb, call <% yield %> to render the view using this
-  layout.
-
-app/helpers
-  Holds view helpers that should be named like weblogs_helper.rb. These are
-  generated for you automatically when using generators for controllers.
-  Helpers can be used to wrap functionality for your views into methods.
-
-config
-  Configuration files for the Rails environment, the routing map, the database,
-  and other dependencies.
-
-db
-  Contains the database schema in schema.rb. db/migrate contains all the
-  sequence of Migrations for your schema.
-
-doc
-  This directory is where your application documentation will be stored when
-  generated using <tt>rake doc:app</tt>
-
-lib
-  Application specific libraries. Basically, any kind of custom code that
-  doesn't belong under controllers, models, or helpers. This directory is in
-  the load path.
-
-public
-  The directory available for the web server. Also contains the dispatchers and the
-  default HTML files. This should be set as the DOCUMENT_ROOT of your web
-  server.
-
-script
-  Helper scripts for automation and generation.
-
-test
-  Unit and functional tests along with fixtures. When using the rails generate
-  command, template test files will be generated for you and placed in this
-  directory.
-
-vendor
-  External libraries that the application depends on. Also includes the plugins
-  subdirectory. If the app has frozen rails, those gems also go here, under
-  vendor/rails/. This directory is in the load path.
