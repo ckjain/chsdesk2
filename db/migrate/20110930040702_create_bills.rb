@@ -1,7 +1,9 @@
 class CreateBills < ActiveRecord::Migration
   def change
     create_table :bills do |t|
-      t.integer :society_id,            :null => false
+      t.integer :society_id,            :default => '1'
+      t.integer :unit_id
+      t.integer :member_id
       t.integer :bill_header_id,        :null => false
       t.integer :bill_number,           :limit => 25, :null => false
       t.integer :member_property_id,    :null => false

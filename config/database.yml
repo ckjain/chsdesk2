@@ -5,12 +5,12 @@
 #   gem 'sqlite3'
 development:
   adapter: mysql
-  database: chsdesk3
+  database: chsdesk
   pool: 5
   timeout: 5000
-  host: chsdesk3.db.8016222.hostedresource.com
-  username: chsdesk3
-  password: Ckjain123
+  host: localhost
+  username: root
+  password: ckjain123
  
 
 # Warning: The database defined as "test" will be erased and

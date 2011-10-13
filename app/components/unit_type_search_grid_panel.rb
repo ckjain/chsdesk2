@@ -1,5 +1,7 @@
 
 class UnitTypeSearchGridPanel < ::Netzke::Basepack::GridPanel
+      action :show_details, :text => "Show details"
+
   config :tbar => ['->', {
     :xtype => 'textfield',
     :id => 'unittype_search_field',
@@ -9,12 +11,11 @@ class UnitTypeSearchGridPanel < ::Netzke::Basepack::GridPanel
   }],
       :persistence => true,
       :header => false, 
-      :width => 820, :height => 400,
       :title => 'Unit Type',
       :model => "UnitType",
-      :bbar =>  [:add.action, :edit.action, :apply.action, :del.action],
+    :bbar =>  [:show_details.action, "-", :add.action, "-", :edit.action, "-", :apply.action, "-", :del.action], 
       :columns => [ 
-      {:name => :type_name, :width => 150,:label => 'Type Name',:renderer => "uppercase" },
+      {:name => :type_name, :width => 150,:label => 'Type Name',:renderer => "capitalize" },
       {:name => :tax_area, :xtype => 'numbercolumn',:align => 'right',:format =>'0.00',:width => 120,:label => 'Property Tax Area',},
       {:name => :maintenance_area, :xtype => 'numbercolumn',:align => 'right',:format =>'0.00',:width => 120, :label => 'Maintenance Area'},  
       {:name => :carpet_area, :xtype => 'numbercolumn',:align => 'right',:format =>'0.00',:width => 120,:label => 'Carpet Area',},

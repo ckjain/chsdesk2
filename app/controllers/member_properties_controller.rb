@@ -57,7 +57,6 @@ class MemberPropertiesController < ApplicationController
   # PUT /member_properties/1.json
   def update
     @member_property = MemberProperty.find(params[:id])
-
     respond_to do |format|
       if @member_property.update_attributes(params[:member_property])
         format.html { redirect_to @member_property, :notice => 'Member property was successfully updated.' }

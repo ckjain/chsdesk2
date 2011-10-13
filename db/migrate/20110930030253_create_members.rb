@@ -17,7 +17,7 @@ class CreateMembers < ActiveRecord::Migration
       t.timestamps
     end
        
-    Member.create(:mobile_phone => "9243707178", :first_name => "SANDIP", :last_name => "Shah", :email_id => "SOMAJI@lv.com", :prefix => "Dr.")
+    Member.create(:mobile_phone => "0000000000", :first_name => "Name", :last_name => "No", :email_id => "noname@chsdesk.com", :prefix => "No")
     Member.create(:mobile_phone => "9843707178", :first_name => "SAVIO", :last_name => "Shah", :email_id => "saviowilld@lv.com", :prefix => "Mr.")
     Member.create(:mobile_phone => "9543707178", :first_name => "Dinesh", :last_name => "Shah", :email_id => "Dinesh@lv.net", :prefix => "Shrimati")
     Member.create(:mobile_phone => "9343707178", :first_name => "Gurpreet", :last_name => "Shah", :email_id => "onyewuo@chsdesk.org", :prefix => "Shrimati")
@@ -139,7 +139,7 @@ class CreateMembers < ActiveRecord::Migration
     Member.create(:mobile_phone => "9487849875", :first_name => "JAIKISHAN", :last_name => "Mangala", :email_id => "manga@gmail.com", :prefix => "Mr.")
     Member.create(:mobile_phone => "9439849875", :first_name => "KETAKI", :last_name => "PUROHIT", :email_id => "miku@gmail.com", :prefix => "Shri")
   
-      add_index :members, :email_id, :unique => true
+    add_index :members, :email_id
 
   end
 end

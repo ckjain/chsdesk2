@@ -8,7 +8,7 @@ gem 'rails', '3.1.0'
 gem 'mysql'
 
 gem 'json'
-
+gem 'sorcery'
 gem 'netzke-core', :git => "git://github.com/skozlov/netzke-core.git"
 gem 'netzke-basepack', :git => "git://github.com/skozlov/netzke-basepack.git"
 gem 'will_paginate', '~>3.0.pre2'
@@ -19,6 +19,8 @@ group :assets do
   gem 'coffee-rails', "~> 3.1.0"
   gem 'uglifier'
 end
+
+gem 'carrierwave'
 
 gem 'jquery-rails'
 

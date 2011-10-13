@@ -7,6 +7,7 @@ class CreateUnitTypes < ActiveRecord::Migration
       t.decimal :carpet_area,       :precision => 8, :scale => 2, :default => 0
       t.decimal :built_area,        :precision => 8, :scale => 2, :default => 0
       t.decimal :super_built_area,  :precision => 8, :scale => 2, :default => 0
+      t.integer :society_id,       :default => '1'
 
       t.timestamps
     end
@@ -23,6 +24,7 @@ class CreateUnitTypes < ActiveRecord::Migration
         UnitType.create(:type_name => "Office", :carpet_area => 678.66, :built_area => 870.44, :super_built_area => 960.80, :tax_area => 960.80)
         UnitType.create(:type_name => "Bunglow", :carpet_area => 3680.60, :built_area => 3970.44, :super_built_area => 4350.00, :tax_area => 4350.80)
         UnitType.create(:type_name => "Tenament", :carpet_area => 2654.45, :built_area => 3000.44, :super_built_area => 3560.80, :tax_area => 3560.80)
+     add_index "unit_types", ["society_id"], :name => "fk_unit_types_society_id"
 
   end
 end

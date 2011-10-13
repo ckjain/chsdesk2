@@ -1,5 +1,9 @@
 
 class McSearchGridPanel < ::Netzke::Basepack::GridPanel
+      action :show_details, :text => "Show details"
+    def default_bbar
+      ['<a href="/send_xl">Export XL</a>']
+    end 
   config :tbar => ['->', {
     :xtype => 'textfield',
     :id => 'mc_search_field',
@@ -10,13 +14,12 @@ class McSearchGridPanel < ::Netzke::Basepack::GridPanel
       :persistence => true,
       :border =>false,
       :header => false, 
-      :width => 820, :height => 350,
       :title => 'Manage Committee Detail',
       :model => "CommitteeMember",
-      :bbar =>  [:add.action, :edit.action, :apply.action, :del.action],
+    :bbar =>  [:show_details.action, "-",:add.action, "-", :edit.action, "-", :apply.action, "-", :del.action], 
       :columns => [ 
-      {:name => :designation, :width => 130,:label => 'Designation',:renderer => "uppercase" },
-      {:name => :member__member_name, :width => 240,:label => 'Member Name',:renderer => "uppercase" },
+      {:name => :designation, :width => 130,:label => 'Designation',:renderer => "capitalize" },
+      {:name => :member__member_name, :width => 240,:label => 'Member Name' },
       {:name => :signatory, :width => 80,:label => 'Is Signatory?' },
       {:name => :elected, :width => 60,:label => 'Elected ?', :tooltip => "Select box if member is elected/Un select if member is nominated"},
       {:name => :mc_start_date, :format => "d/m/y",:width => 100,:label => 'Committee In date',:tooltip => "The date when member became committe member"},

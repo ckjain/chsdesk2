@@ -1,23 +1,2 @@
-<input type="button" value="Bill Setup" style="width:160px" onClick="Netzke.page.billSetup.show()" />
-<input type="button" value="Bill Header" style="width:160px" onClick="Netzke.page.billHeader.show()" />
 
-<%= netzke :bill_setup,
-    :class_name => "Basepack::Window",
-    :x => 50,
-    :y => 50,
-    :close_action => "hide",
-   	:items => [{
-    :class_name => "BillSetupSearchGridPanel",
-        }]
-%>
-<%= netzke :bill_header,
-    :class_name => "Basepack::Window",
-    :x => 50,
-    :y => 50,
-    :close_action => "hide",
-   	:items => [{
-    :class_name => "BillHeaderSearchGridPanel",
-        }]
-%>
-<%= netzke :bill_search_grid_panel %>
-<%= netzke :bill_inspector %>
+<%= netzke :tree_billing %>

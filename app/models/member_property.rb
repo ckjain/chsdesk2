@@ -5,10 +5,11 @@ class MemberProperty < ActiveRecord::Base
   belongs_to :member
   belongs_to :unit
   def property_name
-    "#{unit.building_name}, #{unit.wing_name}, #{unit.unit_number}- #{member.last_name}, #{member.first_name}"
+    "#{unit.building_name.capitalize}, #{unit.wing_name.capitalize}, #{unit.unit_number}- #{member.last_name.capitalize}, #{member.first_name.capitalize}"
   end
+  default_scope :order => 'member_properties.updated_at DESC'
 
-  validates_presence_of :member_type, :status, :member_id
+  validates_presence_of :member_type, :member_id
   validate :unit_id_presence_of, :end_date_cannot_be_before
     def unit_id_presence_of 
       if !unit_id.blank? and unit_id < 1
@@ -29,10 +30,10 @@ class MemberProperty < ActiveRecord::Base
   
    }
 
-   def updated
-      MemberProperty.where('end_date <> ?', 'NULL').update_all(:status => false)
-      @mpunit = MemberProperty.select('unit_id').where('updated_at > ? AND status = ? AND start_date <> ?' , 10.seconds.ago, '0', 'NULL')
-          if updated_at > 10.seconds.ago
+   def updated_status
+    MemberProperty.where('end_date <> ?', '0000-00-00').update_all(:status => false)
+    @mpunit = MemberProperty.select('unit_id').where('updated_at > ? AND status = ? AND start_date <> ?' , 5.seconds.ago, '0', '0000-00-00')
+          if updated_at > 5.seconds.ago
               Unit.where('id = ?', @mpunit[0].unit_id).update_all(:assigned => false)
           end
       updated_at > 5.minutes.ago

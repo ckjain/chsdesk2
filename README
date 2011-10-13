@@ -1,3 +1,5 @@
+
+
 Masql setup
 
 Gem install mysql
@@ -206,5 +208,28 @@ Available Callbacks
     after_destroy
     around_destroy
 
+********************************************
+Current roles of sharmila are listed below.
+You can add a role roles by selecting the checkboxes and remove a role by de-selecting the checkbox.
+
+Community Administrator*	
+Noticeboard Administrator	
+Complaint Box Administrator	
+Complaint Category Administrator
+Repository Administrator	
+Vendor Administrator	
+Accounting Administrator	
+Utility Billing Administrator
+Action Item Administrator	
+Facility Booking Administrator	
+Vehicle Administrator	
+Asset Administrator
+Notification Administrator	
+Service Staff Administrator	
+Data Entry Operator	Auditor
+Security Front Office	
+Poll Administrator	
+Accounting Assistant
+* Community Administrator overrides all other role assignments of a user. Any member/staff being assigned "Communtiy Administrator" role will have access to ALL information and can perform ANY action on the data associated with your complex. This includes removing other community administrators as well. Thus please assign "Communtiy Administrator" role responsibly.
 
 

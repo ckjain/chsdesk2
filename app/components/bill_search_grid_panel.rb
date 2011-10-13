@@ -1,4 +1,5 @@
 class BillSearchGridPanel < ::Netzke::Basepack::GridPanel
+    action :show_details, :text => "Show details"
 
  config :tbar => ['->', {
     :xtype => 'textfield',
@@ -9,23 +10,22 @@ class BillSearchGridPanel < ::Netzke::Basepack::GridPanel
   }],
      :persistence => true,
      :border =>false,
-     :width => 820, :height => 600,
      :title => 'Manage Bills ',
      :model => "Bill",
-     :bbar =>  [:add.action, :edit.action, :apply.action, :del.action],
+    :bbar =>  [:show_details.action, "-",:add.action, "-", :edit.action, "-", :apply.action, "-", :del.action], 
      :columns => [
-      {:name => :bill_number, :width => 60,:label => 'Bill number'},
-      {:name => :member_property__property_name, :width => 160,:label => 'Flat No.- Member Name' },
+      {:name => :bill_number, :width => 60,:label => 'Bill number',:align => 'right'},
+      {:name => :member__bill_member_name, :read_only => true, :width => 90,:label => 'Member Name' },
+      {:name => :unit__unit_name, :read_only => true,:width => 70,:label => 'Flat No.' },
       {:name => :property_tax, :xtype => 'numbercolumn',:align => 'right',:format =>'0.00',:width => 70,:label => 'Property Tax'},
       {:name => :maintenance_charges, :xtype => 'numbercolumn', :align => 'right',:format =>'0.00',:width => 70,:label => 'Maintenance'},
       {:name => :repair_fund, :xtype => 'numbercolumn',:align => 'right',:format =>'0.00',:width => 65, :label => 'RepairFund'},
       {:name => :sinking_fund, :xtype => 'numbercolumn',:align => 'right',:format =>'0.00',:width => 65, :label => 'SinkingFund'},
-      {:name => :noc_charges, :xtype => 'numbercolumn',:align => 'right',:format =>'0.00',:width => 40, :label => 'NOC'},
-      {:name => :parking_charges, :xtype => 'numbercolumn',:align => 'right',:format =>'0.00',:width => 43, :label => 'Parking'},
-      {:name => :other_charges, :xtype => 'numbercolumn',:align => 'right',:format =>'0.00',:width => 45, :label => 'Others'},
-      {:name => :service_tax, :width => 40, :xtype => 'numbercolumn',:align => 'right',:format =>'0.00',:label => 'S.Tax'},
-      {:name => :penalty_interest, :xtype => 'numbercolumn',:align => 'right',:format =>'0.00',:width => 45,:label => 'Penalty'},
-      {:name => :discount_amount, :xtype => 'numbercolumn',:align => 'right',:format =>'0.00',:width => 47,:label => 'Discount'},
+      {:name => :noc_charges, :xtype => 'numbercolumn',:align => 'right',:format =>'0.00',:width => 55, :label => 'NOC'},
+      {:name => :parking_charges, :xtype => 'numbercolumn',:align => 'right',:format =>'0.00',:width => 55, :label => 'Parking'},
+      {:name => :other_charges, :xtype => 'numbercolumn',:align => 'right',:format =>'0.00',:width => 55, :label => 'Others'},
+      {:name => :service_tax, :width => 55, :xtype => 'numbercolumn',:align => 'right',:format =>'0.00',:label => 'S.Tax'},
+      {:name => :discount_amount, :xtype => 'numbercolumn',:align => 'right',:format =>'0.00',:width => 55,:label => 'Discount'},
       {:name => :current_bill_charges, :xtype => 'numbercolumn',:align => 'right',:format =>'0.00',:width => 60, :label => 'Bill Amount'},
       {:name => :payable_amount, :xtype => 'numbercolumn',:align => 'right',:format =>'0.00',:width => 70, :label => 'Net Payable'},
       {:name => :from_date, :format => "d-m-y", :width => 70, :label => 'From'},

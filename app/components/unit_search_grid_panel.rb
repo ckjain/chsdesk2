@@ -1,5 +1,6 @@
-
 class UnitSearchGridPanel < ::Netzke::Basepack::GridPanel
+      action :show_details, :text => "Show details"
+
   config :tbar => ['->', {
     :xtype => 'textfield',
     :id => 'unit_search_field',
@@ -9,18 +10,20 @@ class UnitSearchGridPanel < ::Netzke::Basepack::GridPanel
   }],
    :border => false,
    :persistence => false,
-    :width => 820, :height => 575,
    :header => false,
-   :bbar =>  [:add.action, :edit.action, :apply.action, :del.action], 
+   :height => 515,
+    :bbar =>  [:show_details.action, "-", :add.action, "-", :edit.action, "-", :apply.action, "-", :del.action], 
    :title => 'Unit Details',
    :model => "Unit",
     :columns => [ 
-    {:name => :unit_number, :width => 80, :label => 'Unit Number'},
-    {:name => :building_name, :width => 45, :label => 'Building', :renderer => "uppercase"},
-    {:name => :wing_name, :width => 35, :label => 'Wing', :renderer => "uppercase"},
-    {:name => :floor_name, :width => 35, :label => 'Floor', :renderer => "uppercase"},
-    {:name => :unit_type__type_name, :width => 100, :label => 'Unit Type'}, 
-    {:name => :noc_charges, :xtype => 'numbercolumn',:align => 'right',:format =>'0.00',:width => 40, :label => 'NOC'}, 
+    {:name => :unit_number, :width => 70, :label => 'Unit Number',:align => 'right'},
+    {:name => :updated_bulb, :width => 25,:label => "<div class='bulb-off' />", :getter => lambda { |r| bulb = r.updated_unit ? "on" : "off"
+            "<div class='bulb-#{bulb}' />"}},
+    {:name => :building_name, :width => 45, :align => 'center',:label => 'Building', :renderer => "capitalize"},
+    {:name => :wing_name, :width => 35, :label => 'Wing', :align => 'center',:renderer => "uppercase"},
+    {:name => :floor_name, :width => 35, :label => 'Floor', :align => 'center'},
+    {:name => :unit_type__type_name, :width => 100, :label => 'Unit Type',:renderer => "capitalize"}, 
+    {:name => :noc_charges,  :width => 40, :label => 'NOC', :xtype => 'numbercolumn',:align => 'right',:format =>'0.00'}, 
     {:name => :parking_charges, :xtype => 'numbercolumn',:align => 'right',:format =>'0.00',:width => 50, :label => 'Parking'}, 
     {:name => :bill_amount, :xtype => 'numbercolumn',:align => 'right',:format =>'0.00', :width => 70, :label => 'BillAmount'}, 
     {:name => :property_tax, :xtype => 'numbercolumn',:align => 'right',:format =>'0.00', :width => 70, :label => 'PropertyTax'}, 
@@ -30,7 +33,7 @@ class UnitSearchGridPanel < ::Netzke::Basepack::GridPanel
     {:name => :other_charge, :xtype => 'numbercolumn',:align => 'right',:format =>'0.00', :width => 70, :label => 'OtherCharges'}, 
     {:name => :service_tax, :xtype => 'numbercolumn',:align => 'right',:format =>'0.00', :width => 50, :label => 'S.Tax'}, 
     {:name => :discount, :xtype => 'numbercolumn',:align => 'right',:format =>'0.00', :width => 50, :label => 'discount'}, 
-    {:name => :society__society_name, :width => 160, :label => 'Society Name', :renderer => "uppercase"},
+    {:name => :society__society_name, :width => 160, :label => 'Society Name', :renderer => "capitalize"},
 
     ]
 

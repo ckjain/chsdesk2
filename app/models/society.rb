@@ -13,6 +13,7 @@ class Society < ActiveRecord::Base
 #  has_many :invoices
   has_many :units
   has_many :members
+  has_many :unit_types
 #  accepts_nested_attributes_for :units, :allow_destroy => true
 #  attr_reader :unit_tokens
 #  attr_reader :member_tokens

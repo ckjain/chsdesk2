@@ -2,41 +2,25 @@
   <img id="j_3" class="image0" src="/stylesheets/files/views/assets/asset-1218360" />
 
 <ul id="j_4" class="sf-menu dropdownmenu0 " tabIndex="2">
-        <li style="width:60px;">
+        <li style="width:15px;">
             <a id="j_16" href="#">
              <li><%= link_to "Home", home_path %></li> 
-            	
+        <% if current_user %>
+        	<li><%= link_to current_users_list %> </li>
+        	<li><%= link_to "Logout", :logout %> </li>
+        	<li><%= link_to "Edit Profile", edit_user_path(current_user.id) %></li>
+        <% else %>
+        	<li><%= link_to "Register", new_user_path %> </li>
+        	<li><%= link_to "Login", :login %> </li>|
+			<li><%= link_to 'Login from HTTP', login_from_http_basic_users_path %> </li>
+			<li><%= link_to 'Login with Twitter', auth_at_provider_path(:provider => :twitter) %> </li> 
+			<li><%= link_to 'Login with Facebook', auth_at_provider_path(:provider => :facebook) %></li>
+        <% end %>
+
             
             </a>
         </li>
-        <li class="group" style="width:70px;">
-            <a id="j_17" href="#">
-            Member
-            </a>
-            <ul style="width:89px;">
-                <li style="width:65px !important;">
-                    <a id="j_18" href="#" style="width:57px">
-                    Profile
-                    </a>
-                </li>
-                <li style="width:65px !important;">
-                    <a id="j_19" href="#" style="width:57px">
-                    Accounts
-                    </a>
-                </li>
-                <li style="width:65px !important;">
-                    <a id="j_20" href="#" style="width:57px">
-                    Vehicle
-                    </a>
-                </li>
-                <li style="width:65px !important;">
-                    <a id="j_21" href="#" style="width:57px">
-                    Family
-                    </a>
-                </li>
-            </ul>
-        </li>
-            <li style="width:45px;">
+            <li style="width:15px;">
             <a id="j_24" href="#">
             Help
             </a>

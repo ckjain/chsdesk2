@@ -4,8 +4,8 @@ class CreateMemberProperties < ActiveRecord::Migration
       t.integer :member_id,    :null => true
       t.integer :unit_id,      :null => false
       t.string :member_type,   :limit => 50, :default => "Regular"
-      t.date :start_date,      :null => true
-      t.date :end_date
+      t.date :start_date,      :default => '0000-00-00'
+      t.date :end_date,        :default => '0000-00-00'
       t.boolean :status,       :default => true
 
       t.timestamps

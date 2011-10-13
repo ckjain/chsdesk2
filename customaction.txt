@@ -1,0 +1,179 @@
+All,
+
+I've been trying to add custom actions to a grid per the various
+examples on the blog and examples in this group.  However, I've run
+into a stumbling block.  I've gotten the actions to be recognized and
+added into the grid, including enabling functionality when a row is
+selected.  Each action calls the correct rails method api correctly.
+What it does not do is find the correct data store to produce an the
+id I need.
+
+In basic functionality, I need the javascript action to send the row
+id to the ruby api which will do actions based on it.  Any help or
+restructuring advice is greatly appreciated.
+
+Here is the code:
+
+Main page:
+module Netzke
+  class StatusMonitor < BorderLayoutPanel
+    def default_config
+      super.merge({
+              :regions => {
+                :center => {
+                  :class_name => "BorderLayoutPanel",
+                  :ext_config => {
+                    :title => "Monitor"
+                  },
+                  :regions=>{
+                    :north => {
+                      :class_name => "BatchMonitor",
+                              :model => "Batch",
+        :columns => [{:name=>:id,:hidden=>false,:header=>"Batch
+#",:size=>30},
+                     {:name=>:batch_nm, :size=>300,:header=>"Batch
+Name"},
+                     {:name=>:status_cd,:header=>"Current
+Status",:size=>60},
+
+{:name=>:active_ind,:header=>"Active",:size=>30},
+
+{:name=>:override_ind,:header=>"Override",:size=>30},
+
+{:name=>:current_object__run_start_ts,:header=>"Last Start
+Time",:renderer=>["date","Y-m-d H:i:s T"]},
+
+{:name=>:current_object__run_end_ts,:header=>"Last End
+Time",:renderer=>["date","Y-m-d H:i:s T"]}
+         ],
+                      :ext_config => {
+                            :title => "Batches",
+                            :bbar =>[:search,"-",:start,:stop_batch],
+                            :tbar =>nil,
+                            :prohibit_update => true,
+                            :prohibit_delete => true,
+                            :view_config => { :force_fit => true},
+                            :context_menu=>[:start,:stop_batch,:activate_batch,:deactivate_batch,:override_run_batch]
+                       },
+                       :region_config => {
+                           :height => 300,
+                           :split => true
+                       }
+                    },
+// more code
+
+Custom Grid Actions:
+module Netzke
+  class BatchMonitor < GridPanel
+    def self.js_extend_properties
+      super.merge({
+        :init_component => <<-END_OF_JAVASCRIPT.l,
+          function(){
+            #{js_full_class_name}.superclass.initComponent.call(this);
+            this.getSelectionModel().on('selectionchange',
+function(selModel){
+              this.actions.start.setDisabled(selModel.getCount() !=
+1);
+              this.actions.stopBatch.setDisabled(selModel.getCount() !
+= 1);
+
+this.actions.activateBatch.setDisabled(selModel.getCount() != 1);
+
+this.actions.deactivateBatch.setDisabled(selModel.getCount() != 1);
+
+this.actions.overrideRunBatch.setDisabled(selModel.getCount() != 1);
+            }, this);
+          }
+          END_OF_JAVASCRIPT
+
+        :on_start => <<-END_OF_JAVASCRIPT.l,
+          function(self, rowIndex){
+            this.start({batch_sk:
+self.store.getAt(rowIndex).get('id')});
+          }
+        END_OF_JAVASCRIPT
+
+        :on_stop_batch => <<-END_OF_JAVASCRIPT.l,
+          function(self, rowIndex){
+            this.stopBatch({batch_sk:
+self.store.getAt(rowIndex).get('id')});
+          }
+        END_OF_JAVASCRIPT
+
+        :on_activate_batch => <<-END_OF_JAVASCRIPT.l,
+          function(self, rowIndex){
+            this.activateBatch({batch_sk:
+self.store.getAt(rowIndex).get('id')});
+          }
+        END_OF_JAVASCRIPT
+
+        :on_deactivate_batch => <<-END_OF_JAVASCRIPT.l,
+          function(self, rowIndex){
+            this.deactivateBatch({batch_sk:
+self.store.getAt(rowIndex).get('id')});
+          }
+        END_OF_JAVASCRIPT
+
+        :on_override_run_batch => <<-END_OF_JAVASCRIPT.l,
+          function(self, rowIndex){
+            this.overrideRunBatch({batch_sk:
+self.store.getAt(rowIndex).get('id')});
+          }
+        END_OF_JAVASCRIPT
+        })
+    end
+
+    def actions
+      super.merge({
+        :activate_batch     =>  {:text => "Activate",:disabled=>true},
+        :deactivate_batch   =>  {:text =>
+"Deactivate",:disabled=>true},
+        :start              =>  {:text => "Start",:disabled=>true},
+        :stop_batch         =>  {:text => "Stop", :disabled=>true},
+        :override_run_batch =>  {:text => "Override
+Run", :disabled=>true}
+      })
+    end
+
+api :start, :stop_batch, :activate_batch, :deactivate_batch,:override_run_batch
+// api code
+
+Sadly, I am currently using rails 2.3.9 for the time being.  I'm using
+netzke core v0.5.5 and basepack 0.5.14.
+
+Thanks for any help in advance
+Michael
+	
+	
+		
+Michael Bilderback   	
+
+	 More options Dec 15 2010, 11:57 pm
+Nevermind All,
+
+I solved the problem.
+
+For those curious, here is the change:
+
+--original
+        :on_start => <<-END_OF_JAVASCRIPT.l,
+          function(self, rowIndex){
+            this.start({batch_sk:
+self.store.getAt(rowIndex).get('id')});
+          }
+
+--Solved
+
+        :on_start => <<-END_OF_JAVASCRIPT.l,
+          function(self, rowIndex){
+            this.start({batch_sk:
+this.getSelectionModel().getSelected().data.id});
+          }
+
+Thanks,
+Michael
+
+On Dec 14, 5:17 pm, Michael Bilderback <sary...@gmail.com> wrote:
+
+- Show quoted text -
+

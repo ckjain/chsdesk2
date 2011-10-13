@@ -9,22 +9,21 @@ class BillHeaderSearchGridPanel < ::Netzke::Basepack::GridPanel
      :persistence => true,
  
      :header => false, 
-     :width => 720, :height => 330,
      :title => 'Manage Bill Headings',
      :model => "BillHeader",
-     :bbar =>  [ :add.action, :edit.action, :apply.action, :del.action,],
+    :bbar =>  [:add.action, "-", :edit.action, "-", :apply.action, "-", :del.action], 
      :columns => [
       {:name => :bill_date, :format => "d/m/y", :width => 70,:label => 'Bill Date'},
       {:name => :from_date, :format => "d/m/y", :width => 70,:label => 'From Date'},
       {:name => :to_date, :format => "d/m/y", :width => 70,:label => 'To Date'},
-      {:name => :bill_cycle, :width => 85,:label => 'Bill Cycle'},
-      {:name => :grace_period, :xtype => 'numbercolumn',:align => 'right',:format =>'0,000',:width => 80,:label => 'Grace Period'},
-      {:name => :days_to_discount, :xtype => 'numbercolumn',:align => 'right',:format =>'0,000',:width => 80, :label => 'Discount Days'},
-      {:name => :bill_number_start, :xtype => 'numbercolumn',:align => 'right',:format =>'0,000',:width => 70, :label => 'Bill Number Start'},
-      {:name => :bill_number_end, :xtype => 'numbercolumn',:align => 'right',:format =>'0,000',:width => 85,:label => 'Bill Number End'},
-      {:name => :bill_number_format, :width => 80,:label => 'Bill Number Format'},
+      {:name => :bill_cycle, :width => 80,:align => 'right',:label => 'Months to Bill'},
+      {:name => :grace_period, :xtype => 'numbercolumn',:align => 'right',:format =>'0,000',:width => 80,:label => 'Days of Grace'},
+      {:name => :days_to_discount, :xtype => 'numbercolumn',:align => 'right',:format =>'0,000',:width => 100, :label => 'Days for Discount'},
+      {:name => :bill_number_start, :xtype => 'numbercolumn',:align => 'right',:format =>'0,000',:width => 110, :label => 'Starting Bill Number'},
+      {:name => :bill_number_end, :xtype => 'numbercolumn',:align => 'right',:format =>'0,000',:width => 100,:label => 'Ending Bill Number'},
+      {:name => :bill_number_format, :width => 110,:label => 'Bill Number Format'},
       {:name => :locked_period, :width => 80, :label => 'Done'},
-      {:name => :society__society_name, :width => 70, :label => 'Society Name'}, 
+      {:name => :society__society_name, :width => 140, :label => 'Society Name',:renderer => "capitalize"}, 
 
       ]
 

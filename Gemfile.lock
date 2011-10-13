@@ -47,9 +47,12 @@ GEM
     activesupport (3.1.0)
       multi_json (~> 1.0)
     acts_as_list (0.1.4)
+    addressable (2.2.6)
     arel (2.2.1)
     bcrypt-ruby (3.0.1-x86-mingw32)
     builder (3.0.0)
+    carrierwave (0.5.7)
+      activesupport (~> 3.0)
     coffee-rails (3.1.1)
       coffee-script (>= 2.2.0)
       railties (~> 3.1.0)
@@ -60,6 +63,10 @@ GEM
     erubis (2.7.0)
     execjs (1.2.9)
       multi_json (~> 1.0)
+    faraday (0.6.1)
+      addressable (~> 2.2.4)
+      multipart-post (~> 1.1.0)
+      rack (< 2, >= 1.1.0)
     hike (1.2.1)
     i18n (0.6.0)
     jquery-rails (1.0.14)
@@ -72,7 +79,12 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.16)
     multi_json (1.0.3)
+    multipart-post (1.1.3)
     mysql (2.8.1-x86-mingw32)
+    oauth (0.4.5)
+    oauth2 (0.4.1)
+      faraday (~> 0.6.1)
+      multi_json (>= 0.0.5)
     polyglot (0.3.2)
     rack (1.3.3)
     rack-cache (1.0.3)
@@ -107,6 +119,12 @@ GEM
       sass (>= 3.1.4)
       sprockets (~> 2.0.0)
       tilt (~> 1.3.2)
+    sorcery (0.6.1)
+      bcrypt-ruby (~> 3.0.0)
+      oauth (~> 0.4.4)
+      oauth (~> 0.4.4)
+      oauth2 (~> 0.4.1)
+      oauth2 (~> 0.4.1)
     sprockets (2.0.0)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -126,6 +144,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  carrierwave
   coffee-rails (~> 3.1.0)
   jquery-rails
   json
@@ -134,5 +153,6 @@ DEPENDENCIES
   netzke-core!
   rails (= 3.1.0)
   sass-rails (~> 3.1.0)
+  sorcery
   uglifier
   will_paginate (~> 3.0.pre2)

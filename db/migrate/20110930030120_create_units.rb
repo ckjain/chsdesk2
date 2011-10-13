@@ -3,7 +3,7 @@ class CreateUnits < ActiveRecord::Migration
     create_table :units do |t|
       t.string :unit_number,        :limit => 20,  :null => false
       t.string :wing_name,          :limit => 10,  :null => false
-      t.string :building_name,      :limit => 10,  :null => false
+      t.string :building_name,      :limit => 10,  :null => false, :default => '1'
       t.string :floor_name,         :limit => 10,  :null => false
       t.decimal :noc_charges,       :precision => 7, :scale => 2, :default => 0
       t.decimal :parking_charges,   :precision => 7, :scale => 2, :default => 0
@@ -17,8 +17,12 @@ class CreateUnits < ActiveRecord::Migration
       t.decimal :bill_amount,       :precision => 9, :scale => 2, :default => 0
       t.string :other_detail 
       t.boolean :assigned,          :default => false       
-      t.integer :unit_type_id,      :null => false
-      t.integer :society_id,        :null => false
+      t.integer :unit_type_id,      :default => '1'
+      t.integer :society_id,        :default => '1'
+      t.integer :bill_setup_id,     :default => '1'
+      t.integer :sold_status_id,        :default => '1'
+      t.integer :Occupation_status_id,  :default => '1'
+      t.integer :maintenance_by_id,     :default => '1'
 
       t.timestamps
     end

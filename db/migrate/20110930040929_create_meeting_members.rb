@@ -3,7 +3,8 @@ class CreateMeetingMembers < ActiveRecord::Migration
     create_table :meeting_members do |t|
       t.integer :meeting_id
       t.integer :member_id
-      t.integer :attending_member
+      t.integer :committee_member_id
+
 
       t.timestamps
     end

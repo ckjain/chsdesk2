@@ -1,5 +1,7 @@
 
 class SocietySearchGridPanel < ::Netzke::Basepack::GridPanel
+      action :show_details, :text => "Show details"
+
   config :tbar => ['->', {
     :xtype => 'textfield',
     :id => 'society_search_field',
@@ -9,26 +11,25 @@ class SocietySearchGridPanel < ::Netzke::Basepack::GridPanel
   }],
    :persistence => true,
    :header => false, 
-   :width => 750, :height => 200,
    :title => 'Manage Society Detail',
    :model => "Society",
-   :bbar =>  [:add.action, :edit.action, :apply.action, :del.action],
+    :bbar =>  [:show_details.action, "-",:add.action, "-", :edit.action, "-", :apply.action, "-", :del.action], 
    :columns => [ 
-    {:name => :society_name, :width => 160, :label => 'Society Name', :renderer => "uppercase"},
-    {:name => :number_of_flats, :width => 90, :label => 'Total no of Flats', :renderer => "uppercase"},
-    {:name => :society_address_line1, :width => 100, :label => 'Address line-1', :renderer => "uppercase"},
-    {:name => :society_address_line2, :width => 100, :label => 'Address line-2', :renderer => "uppercase"},
-    {:name => :society_city, :width => 100, :label => 'City', :renderer => "uppercase"},
-    {:name => :society_state, :width => 100, :label => 'State', :renderer => "uppercase"},
-    {:name => :society_country, :width => 100, :label => 'Country', :renderer => "uppercase"},
+    {:name => :society_name, :width => 160, :label => 'Society Name', :renderer => "capitalize"},
+    {:name => :number_of_flats, :width => 90, :label => 'Total no of Flats'},
+    {:name => :society_address_line1, :width => 100, :label => 'Address line-1', :renderer => "capitalize"},
+    {:name => :society_address_line2, :width => 100, :label => 'Address line-2', :renderer => "capitalize"},
+    {:name => :society_city, :width => 100, :label => 'City', :renderer => "capitalize"},
+    {:name => :society_state, :width => 100, :label => 'State', :renderer => "capitalize"},
+    {:name => :society_country, :width => 100, :label => 'Country', :renderer => "capitalize"},
     {:name => :society_pincode, :width => 100,  :label => "Pincode"},
-    {:name => :govt_address_line1, :width => 100, :label => 'Address line-1', :renderer => "uppercase"},
-    {:name => :govt_address_line2, :width => 100, :label => 'Address line-2', :renderer => "uppercase"},
-    {:name => :govt_address_city, :width => 100, :label => 'Government City', :renderer => "uppercase"},
+    {:name => :govt_address_line1, :width => 100, :label => 'Address line-1', :renderer => "capitalize"},
+    {:name => :govt_address_line2, :width => 100, :label => 'Address line-2', :renderer => "capitalize"},
+    {:name => :govt_address_city, :width => 100, :label => 'Government City', :renderer => "capitalize"},
     {:name => :govt_address_pincode, :width => 100, :label => 'Government Pincode'},
-    {:name => :govt_address_plotnumber, :width => 100, :label => 'Plotnumber', :renderer => "uppercase"},
-    {:name => :registration_number, :width => 100, :label => 'Registration Number', :renderer => "uppercase"},
-    {:name => :govt_ward_number, :width => 100, :label => 'Ward Number', :renderer => "uppercase"},
+    {:name => :govt_address_plotnumber, :width => 100, :label => 'Plotnumber'},
+    {:name => :registration_number, :width => 100, :label => 'Registration Number'},
+    {:name => :govt_ward_number, :width => 100, :label => 'Ward Number'},
     {:name => :active, :width => 100, :label => 'Is Active ?'},]
 
 

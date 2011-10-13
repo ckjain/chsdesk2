@@ -10,18 +10,20 @@ class BillSetupSearchGridPanel < ::Netzke::Basepack::GridPanel
      :persistence => true,
  
      :header => false, 
-     :width => 720, :height => 330,
      :title => 'Manage BillSetup',
      :model => "BillSetup",
      :bbar =>  [ :edit.action, :apply.action],
      :columns => [
-      {:name => :head_name, :read_only => true, :width => 150,:label => 'Categories of charges',:renderer => "uppercase"},
-      {:name => :sub_head_name, :width => 150,:label => 'Sub Category',:renderer => "uppercase"},
+      {:name => :head_name, :read_only => true, :width => 130,:label => 'Categories of charges',:renderer => "capitalize"},
+      {:name => :sub_head_name, :width => 150,:label => 'Sub Category',:renderer => "capitalize"},
       {:name => :rate_sqft_month, :xtype => 'numbercolumn',:align => 'right',:format =>'0.00',:width => 65,:label => 'Rate/sq.Ft' },
       {:name => :rate_unit_month, :xtype => 'numbercolumn',:align => 'right',:format =>'0.00',:width => 85,:label => 'Per Unit/month'},
       {:name => :service_tax_pct, :xtype => 'numbercolumn',:align => 'right',:format =>'0.00',:width => 80,:label => 'Service Tax %'},
       {:name => :days_to_discount, :xtype => 'numbercolumn',:align => 'right',:xtype => 'numbercolumn',:align => 'right',:format =>'0,000',:width => 80, :label => 'Discount Days'},
       {:name => :discount_pct, :xtype => 'numbercolumn',:align => 'right',:format =>'0.00',:width => 70, :label => 'Discount %'},
+      {:name => :updated_bulb, :width => 40,:label => "<div class='bulb-off' />", :tooltip => "Recently updated",
+      :getter => lambda { |r| bulb = r.updated ? "on" : "off"
+           "<div class='bulb-#{bulb}' />"}},
 
       ]
 

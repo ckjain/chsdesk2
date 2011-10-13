@@ -7,21 +7,20 @@ class AssignSearchGridPanel < ::Netzke::Basepack::GridPanel
     :ref => '../assign_search_field',
     :empty_text => 'Search'
   }],
-    :width => 820,
-    :height => 400,
-    :model => "MemberProperty",
+     :model => "MemberProperty",
     :title => 'Assign Flat to Members',
     :header => false,
-    :bbar =>  [:add.action, :edit.action, :apply.action, :del.action], 
+    :bbar =>  [:add.action, "-", :edit.action, "-", :apply.action, "-", :del.action], 
     :columns => [
     {:name => :start_date, :width => 90,:format => "d/m/y",:label => 'Start Date'},
-    {:name => :unit__unit_name, :width => 110, :label => 'Unit',:renderer => "uppercase" },
-    {:name => :member_id, :width => 70, :label => 'Member ID',:tooltip => "Select member ID to be assigned against a unit"},
-    {:name => :member__member_name, :read_only => true, :width => 230, :label => 'Member--View only (Edit By Member ID)', :renderer => "uppercase"},
-    {:name => :member_type, :width => 135,:label => 'Member Type', :renderer => "uppercase"},
-    {:name => :status, :width => 45,:read_only => true,:label => "Active?" },
-    {:name => :updated_bulb, :width => 30,:label => "<div class='bulb-off' />", :getter => lambda { |r| bulb = r.updated ? "on" : "off"
-            "<div class='bulb-#{bulb}' />"}},
+    {:name => :updated_bulb, :width => 30,:label => "<div class='bulb-off' />", :tooltip => "Recently updated",
+      :getter => lambda { |r| bulb = r.updated_status ? "on" : "off"
+           "<div class='bulb-#{bulb}' />"}},
+    {:name => :unit__unit_name, :width => 100, :label => 'Unit',:renderer => "capitalize" },
+    {:name => :member_id, :width => 70, :align => 'center',:label => 'Member ID'},
+    {:name => :member__member_name, :read_only => true, :width => 270, :label => 'Member--View only (Edit By Member ID)'},
+    {:name => :member_type, :width => 105,:label => 'Member Type',:renderer => "capitalize"},
+    {:name => :status, :width => 45,:display_only => true},
     {:name => :end_date, :format => "d/m/y", :width => 90, :label => 'End Date'},
      ]
 

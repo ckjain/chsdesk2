@@ -1,29 +1,59 @@
 ChsdeskSorcery::Application.routes.draw do
-  resources :resolutions
-  resources :agendas
-  resources :meeting_members
-  resources :meeting_types
-  resources :meetings
-  resources :bill_headers
-  resources :bills
-  resources :bill_setups
-  resources :vendors
-  resources :staffs
-  resources :committee_members
-  resources :members
-  resources :member_properties
-  resources :units
-  resources :unit_types
+  root :to => 'users#index'
+    
+  resources :users, :admins do
+    collection do
+      get :login_from_http_basic
+    end
+    member do
+      get :activate
+    end
+  end
+  
+  resources :user_sessions
+  resources :password_resets
+  
+  match 'login' => 'user_sessions#new', :as => :login
+  match 'logout' => 'user_sessions#destroy', :as => :logout
+  
+  resource :oauth do
+    get :callback
+  end
+  match "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
 
+  resources :meetings do
+      resources :agendas
+      resources :meeting_members
+      resources :meeting_types
+  end
+
+  resources :bills do
+      resources :bill_headers
+      resources :bill_setups
+  end
+
+  resources :pages
+  resources :societies do
+      resources :vendors
+      resources :staffs
+    resources :member_properties do
+      resources :units do
+        resources :unit_types
+      end
+      resources :members do
+        resources :committee_members
+      end
+    end
+   end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
-  root :to => 'societies#index'
 
-  resources :societies
+
+
 
   match '/master',      :to => 'societies#index'
   match '/billing',     :to => 'bills#index'
@@ -38,8 +68,7 @@ ChsdeskSorcery::Application.routes.draw do
   match '/committee_members',  :to => 'committee_members#index'
   match '/staffs',      :to => 'staffs#index'
   match '/members',     :to => 'members#index'
-  match '/resolutions',     :to => 'resolutions#index'
-  match '/agendas',     :to => 'agendas#index'
+  match '/meetings',     :to => 'meetings#index'
   match '/vendors',     :to => 'vendors#index'
 
   netzke

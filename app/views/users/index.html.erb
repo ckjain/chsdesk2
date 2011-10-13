@@ -1,0 +1,17 @@
+<h1>Listing users</h1>
+<p id="notice"><%= notice %></p>
+<p id="alert"><%= alert %></p>
+        <% if current_user %>
+        	<li><%= link_to current_users_list %> </li>
+        	<li><%= link_to "Logout", :logout %> </li>
+        	<li><%= link_to "Edit Profile", edit_user_path(current_user.id) %></li>
+        <% else %>
+        	<li><%= link_to "Register", new_user_path %> </li>
+        	<li><%= link_to "Login", :login %> </li>|
+			<li><%= link_to 'Login from HTTP', login_from_http_basic_users_path %> </li>
+			<li><%= link_to 'Login with Twitter', auth_at_provider_path(:provider => :twitter) %> </li> 
+			<li><%= link_to 'Login with Facebook', auth_at_provider_path(:provider => :facebook) %></li>
+        <% end %>
+
+ 
+<%= link_to 'New User', new_user_path %>
